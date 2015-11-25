@@ -1,0 +1,4 @@
+公共方法
+项目组中的一些公共方法，公共资源和常用代码
+
+cookie('selecte_area_id')  获取cookie中，用户的所在地

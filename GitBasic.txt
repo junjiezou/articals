@@ -1,0 +1,28 @@
+Git 基础学习
+学习目标：
+1、配置并初始化一个仓库（repository）
+2、开始或停止跟踪（track）文件
+3、暂存（stage）或提交（commit)更改
+4、如何配置 Git 来忽略指定的文件和文件模式
+5、如何迅速而简单地撤销错误操作
+6、如何浏览你的项目的历史版本以及不同提交（commits）间的差异
+7、如何向你的远程仓库推送（push）以及如何从你的远程仓库拉取（pull）文件。
+
+1、配置并初始化一个仓库（repository）
+	第一种是在现有项目或目录下导入所有文件到 Git 中； 
+		git init 		//初始化 Git 仓库
+		git add *.c 	//开始跟踪指定文件
+		git commit -m 'initial project version' //提交确认
+	第二种是从一个服务器克隆一个现有的 Git 仓库。
+		git clone [url]		//克隆某个URL下指定的项目到本地库
+		eg: git clone https://github.com/libgit2/libgit2
+		git clone https://github.com/libgit2/libgit2 mylibgit	//克隆远程仓库的时候，自定义本地仓库的名字
+
+【基础知识】工作目录下的每一个文件都不外乎这两种状态：已跟踪或未跟踪。而工作状态就是：未修改、已修改或已放入暂存区。
+
+
+2、开始或停止跟踪（track）文件
+	git status	//查看当前分支的文件状态
+	git add [file name] //跟踪新文件,这是个多功能命令：可以用它开始跟踪新文件，或者把已跟踪的文件放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等。
+	
+
