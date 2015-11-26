@@ -1,4 +1,65 @@
 公共方法
 项目组中的一些公共方法，公共资源和常用代码
 
-cookie('selecte_area_id')  获取cookie中，用户的所在地
+=公共
+每个PHP页面都需要添加：<?php defined('InShopNC') or exit('Access Invalid!');?> //暂时没明白是用来干嘛的。
+
+=html相关
+==form方面：
+	<?php Security::getToken();?>
+	<input type="hidden" name="form_submit" value="ok" /> 
+
+
+=JS相关
+	ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall)； //异步提交表单
+
+
+//添加到收藏夹
+function addBookmark(url, label) {
+    if (document.all)
+    {        window.external.addFavorite(url, label);
+    }    else if (window.sidebar)
+    {        window.sidebar.addPanel(label, url, '');
+    }
+}
+
+
+
+=PHP方面的公共方法
+cookie('selecte_area_id')  //获取cookie中，用户的所在地
+chksubmit()  //core.php中的函数，检测FORM是否提交，入参为空时，实际上是检查 $_POST['form_submit'] == ’ok‘
+
+==语言包相关
+Language::read('member_home_member'); //应该是让Language加载某一类别的语言信息
+	//Language是一个单例类，当使用到某个功能的页面时，可以用上面代码来请求加载语言包中的语言，可以同时加载多个文件。但是这个单例类似乎有需要优化的地方，从代码逻辑来看，是每次访问这个页面都要加载一遍的，而且每次都aray_merge一遍，好消耗性能。
+$lang	= Language::getLangContent(); //应该是获取前面加载的信息，不过对字符编码做了一些处理。
+【问题】 在项目里面，是不是所有页面的字段都要用语言包来处理呢？
+
+
+==数据库对象相关
+$model_member	= Model('member');  //实例化某张表的对象。
+$member_info 	= $model_member->find($_SESSION['member_id']); // 实例化对象，可以想象，数据库中的字段就是页面的数据。
+
+==session相关
+$_SESSION['member_id']  // 用户ID
+
+==TPL模板相关
+Tpl::output('menu_sign1','baseinfo');  // 往模板页面塞变量
+Tpl::setLayout('member_pub_layout'); // 指定模板页
+Tpl::showpage('member_profile'); // 显示页面
+
+
+==layout文件
+layout文件是一个布局文件，布局文件定义好之后，通过require语句请求页面。
+eg:
+<?php require_once template('layout/layout_top');?> //获取头部
+<?php require_once($tpl_file); ?> // 获取自己的模板内容，一般特有的js和css基本都写到这里，而公共的js和css文件基本都是模本文件上定义。
+<?php require_once template('footer'); ?>	//获取底部
+
+
+=待学习的内容
+1、jquery的校验函数
+2、
+
+
+

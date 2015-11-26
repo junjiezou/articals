@@ -1,0 +1,38 @@
+JS方面的方法
+
+=JS相关
+	ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall)； //异步提交表单
+
+
+//添加到收藏夹
+function addBookmark(url, label) {
+    if (document.all)
+    {        window.external.addFavorite(url, label);
+    }    else if (window.sidebar)
+    {        window.sidebar.addPanel(label, url, '');
+    }
+}
+
+// 一场处理
+try {
+	...
+	}
+catch(ex){...}
+
+// 安全隔离函数
+$(function(){
+	...
+});
+
+//jquery获取元素位置的对象。
+var pos = $(this).position();
+var pos_x = pos.left;
+var pos_y = pos.top;
+
+
+//jquery获取JSON数据
+$.getJSON('index.php?act=setting&op=ajax_category&id='+$(this).val(), function(data){
+			if(data){				...
+			}else{				...			
+			}
+		});
