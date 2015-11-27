@@ -36,3 +36,8 @@ $.getJSON('index.php?act=setting&op=ajax_category&id='+$(this).val(), function(d
 			}else{				...			
 			}
 		});
+
+
+
+//jquery.validate
+http://200318077.iteye.com/blog/806701
