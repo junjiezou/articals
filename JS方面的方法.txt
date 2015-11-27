@@ -41,3 +41,4 @@ $.getJSON('index.php?act=setting&op=ajax_category&id='+$(this).val(), function(d
 
 //jquery.validate
 http://200318077.iteye.com/blog/806701
+http://www.cnblogs.com/linjiqin/p/3431835.html
