@@ -1,0 +1,66 @@
+修改记录
+
+goods.model.php
+    public function getGoodsList 在这个函数里面加了对order的控制
+    	    }else{
+	    	// zoujunjie 20151129 为了解决排序中的别名而做的特殊处理，不是彻底的好方案。
+	    	$Neworder = str_ireplace('goods.','shopnc_goods.',$order);
+		    
+	    	$result = $this->table('goods')->field($field)->where($condition)->group($group)->order($Neworder)->limit($limit)->page($page, $count)->lock($lock)->select();
+	    }
+
+
+
+core/framework/function/core.php 
+function getCityOrder()  //把排序的大小值修改了一下。
+
+		$order='';
+		//新的同城逻辑
+		$selecte_area_id=cookie('selecte_area_id');
+		$selecte_area_id=intval($selecte_area_id);
+		if(empty($order)){
+				$order="(case when area_id='' then 0 when area_id like '%,0,%' then 1 ";
+			}else{
+					$order.="  when area_id='' then 0 when area_id like '%,0,%' then 1 ";
+				}
+			
+				if($selecte_area_id>0){
+				$areainfo=get_area_details($selecte_area_id);
+					if(is_array($areainfo['area_idlist'])){
+						foreach ($areainfo['area_idlist'] as $ark=>$arv){
+							$order.=" when area_id like '%,".intval($arv).",%' then 0 ";
+						}
+					}
+				}
+						
+		$order.=" else 2 end) asc";
+						
+		return $order;
+
+添加了一个函数：
+
+/**
+ * 获取店铺排名方式
+ * @return string
+ * @author zoujunjie 20151129
+ */
+function getStoreOrder(){
+	// 这是一个解决需求的方式，但是不是一种好的编码方式，想改，但是对当前代码还不够熟悉，排查了一下，关联的点太多，将来熟悉一点之后再处理这个问题。
+	$order='';
+	$order = "(SELECT 
+        max(shopnc_store.store_type)
+    FROM
+        shopnc_store
+    WHERE
+        shopnc_store.store_id = goods.store_id) asc";
+	return $order;
+}
+
+
+
+shop/control/search.php
+修改get_contentOp()
+ //$order=getCityOrder().','.$order;
+        // 按店铺排序
+        $order=getCityOrder().','.getStoreOrder().','.$order;
+

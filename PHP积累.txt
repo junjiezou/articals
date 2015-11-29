@@ -26,5 +26,16 @@ ob_end_flush();//输出全部内容到浏览器
 
 
 XDebug 安装
+http://www.jsjtt.com/webkaifa/PHP/85.html
+xdebug.auto_trace = On
+xdebug.collect_params=On
+xdebug.collect_return=On
+xdebug.show_exception_trace = On
+xdebug.trace_output_dir="E:/DFS/wnmp/xdebugLog"
+xdebug.profiler_output_dir="E:/DFS/wnmp/xdebugLog"
+xdebug.profiler_enable=On
+xdebug.remote_host=localhost
+xdebug.remote_port=9123
+xdebug.remote_enable=true
 
 
