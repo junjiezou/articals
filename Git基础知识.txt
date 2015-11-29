@@ -102,3 +102,8 @@ Git 基础学习
 		//后面用的时候再看吧，就是给常用的一些命令写别名。
 
 
+Git分支
+git branch [branch name]	//分支创建
+git checkout [branch name]	//分支切换
+git log --oneline --decorate --graph --all	//查看分叉历史,它会输出你的提交历史、各个分支的指向以及项目的分支分叉情况。
+
