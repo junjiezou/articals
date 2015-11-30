@@ -106,4 +106,10 @@ Git分支
 git branch [branch name]	//分支创建
 git checkout [branch name]	//分支切换
 git log --oneline --decorate --graph --all	//查看分叉历史,它会输出你的提交历史、各个分支的指向以及项目的分支分叉情况。
-git merge //合并分支
+git merge //合并分支  先checkout准备并入的分支，然后制定要被合并的分支即可。
+git branch 	//后面没有参数的情况下可以查看所有分支
+git branch -v 	//查看每一个分支的最后一次提交
+git branch --merged	//已经合并到当前分支的分支
+git branch --no-merged //尚未合并到当前分支的分支
+git push (remote) (branch)	//推送本地分支给远程库
+
